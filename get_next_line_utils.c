@@ -6,7 +6,7 @@
 /*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 17:28:13 by dalves-s          #+#    #+#             */
-/*   Updated: 2021/06/25 16:31:53 by dalves-s         ###   ########.fr       */
+/*   Updated: 2021/06/26 01:02:28 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ char	*ft_strjoin(char *s1, char *s2)
 	size_t	i;
 	size_t	j;
 
-	if (*s2 == '\0')
-		return (NULL);
 	i = 0;
 	j = 0;
 	joined = (char *) malloc((ft_strlen(s1) + ft_strlen(s2)) + 1);
