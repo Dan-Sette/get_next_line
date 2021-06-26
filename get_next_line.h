@@ -1,0 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/16 17:29:00 by dalves-s          #+#    #+#             */
+/*   Updated: 2021/06/23 23:12:42 by dalves-s         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+
+# include <sys/resource.h>
+# include <unistd.h>
+# include <stdbool.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <limits.h>
+# include <sys/types.h>
+# include <fcntl.h>
+# include <sys/stat.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 32
+# endif
+
+size_t	ft_strlen(char *s);
+char	*ft_strjoin(char *s1, char *s2);
+size_t	ft_strlcpy(char *dst, char *src, size_t size);
+char	*ft_substr(char *s, unsigned int start, size_t len);
+char	*ft_strdup(char *src);
+int		get_next_line(int fd, char **line);
+
+#endif
