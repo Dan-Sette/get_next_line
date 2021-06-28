@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 17:28:13 by dalves-s          #+#    #+#             */
-/*   Updated: 2021/06/28 13:36:24 by dalves-s         ###   ########.fr       */
+/*   Updated: 2021/06/28 14:32:56 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ char	split_line(int fd, char **line_buf, char **buf, int *bytes)
 
 int	get_next_line(int fd, char **line)
 {
-	static char	*line_buf;
+	static char	*line_buf[RLIMIT_NOFILE];
 	char		*buf;
 	int			bytes;
 	int			check;
@@ -85,15 +85,15 @@ int	get_next_line(int fd, char **line)
 	bytes = BUFFER_SIZE;
 	if ((fd < 0) || !line || (BUFFER_SIZE <= 0) || fd > RLIMIT_NOFILE)
 		return (-1);
-	if (!line_buf)
-		line_buf = ft_strdup("");
+	if (!line_buf[fd])
+		line_buf[fd] = ft_strdup("");
 	buf = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (!buf)
 		return (-1);
-	check = split_line(fd, &line_buf, &buf, &bytes);
+	check = split_line(fd, &line_buf[fd], &buf, &bytes);
 	if (!check)
 		return (-1);
-	line_buf = new_line(line, &line_buf, &bytes);
+	line_buf[fd] = new_line(line, &line_buf[fd], &bytes);
 	if (!bytes)
 		return (0);
 	return (1);
