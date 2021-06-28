@@ -6,7 +6,7 @@
 /*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 17:28:13 by dalves-s          #+#    #+#             */
-/*   Updated: 2021/06/26 00:59:20 by dalves-s         ###   ########.fr       */
+/*   Updated: 2021/06/28 01:19:05 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,12 @@ int	line_break(char *line_buf, size_t len)
 	i = 0;
 	if (!line_buf)
 		return (i);
-	while (i++ < len)
+	while (i < len)
+	{
 		if (line_buf[i] == '\n')
 			return (1);
+		i++;
+	}
 	return (0);
 }
 
@@ -41,7 +44,7 @@ char	*new_line(char **line, char **line_buf, int *bytes)
 		if ((*line_buf)[i] == '\n')
 			i++;
 		len = ft_strlen((char *)((*line_buf) + i));
-		aux = ft_substr((*line_buf), i, len);
+		aux = ft_substr((*line_buf), i , len);
 		if (!aux)
 			return (NULL);
 	}
@@ -55,7 +58,7 @@ char	split_line(int fd, char **line_buf, char **buf, int *bytes)
 {
 	char *temp;
 
-	while (*bytes == BUFFER_SIZE && !(line_break(*line_buf, ft_strlen(*line_buf))))
+	while (*bytes && !(line_break(*line_buf, ft_strlen(*line_buf))))
 	{
 		*bytes = read(fd, *buf, BUFFER_SIZE);
 		(*buf)[*bytes] = 0;
@@ -63,7 +66,7 @@ char	split_line(int fd, char **line_buf, char **buf, int *bytes)
 		{
 			free(buf);
 			return (0);
-		}
+		}		
 		temp = *line_buf;
 		*line_buf = ft_strjoin(temp, *buf);
 		free(temp);
