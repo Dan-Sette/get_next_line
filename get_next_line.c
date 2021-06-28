@@ -6,7 +6,7 @@
 /*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 17:28:13 by dalves-s          #+#    #+#             */
-/*   Updated: 2021/06/28 15:08:26 by dalves-s         ###   ########.fr       */
+/*   Updated: 2021/06/28 15:55:08 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	get_next_line(int fd, char **line)
 		return (-1);
 	if (!line_buf)
 		line_buf = ft_strdup("");
-	buf = malloc(sizeof(char) * BUFFER_SIZE + 1);
+	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
 		return (-1);
 	check = split_line(fd, &line_buf, &buf, &bytes);
