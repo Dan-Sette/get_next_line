@@ -6,7 +6,7 @@
 /*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 17:29:00 by dalves-s          #+#    #+#             */
-/*   Updated: 2021/06/27 22:44:02 by dalves-s         ###   ########.fr       */
+/*   Updated: 2021/06/28 16:34:42 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # endif
 
 size_t	ft_strlen(char *s);
+void	*ft_calloc(size_t nmemb, size_t size);
 char	*ft_strjoin(char *s1, char *s2);
 size_t	ft_strlcpy(char *dst, char *src, size_t size);
 char	*ft_substr(char *s, unsigned int start, size_t len);

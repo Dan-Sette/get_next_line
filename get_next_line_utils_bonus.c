@@ -6,7 +6,7 @@
 /*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 17:28:13 by dalves-s          #+#    #+#             */
-/*   Updated: 2021/06/28 15:02:08 by dalves-s         ###   ########.fr       */
+/*   Updated: 2021/06/28 16:54:38 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	i = 0;
 	j = 0;
-	joined = (char *)malloc((ft_strlen(s1) + ft_strlen(s2)) + 1);
+	joined = (char *)ft_calloc(ft_strlen(s1) + ft_strlen(s2) + 1, sizeof(char));
 	if (joined == NULL)
 		return (NULL);
 	while (s1[i] != '\0')
@@ -78,7 +78,7 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 		return (NULL);
 	if (size_s < start)
 	{
-		sub = (char *)malloc(sizeof(char) * 1);
+		sub = (char *)ft_calloc(sizeof(char), 1);
 		if (!sub)
 			return (NULL);
 		return (sub);
@@ -86,7 +86,7 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	max_len = size_s - start;
 	if (len > max_len)
 		len = max_len;
-	sub = (char *)malloc(sizeof(char) * len + 1);
+	sub = (char *)ft_calloc(sizeof(char), len + 1);
 	if (!sub)
 		return (NULL);
 	ft_strlcpy(sub, &s[start], len + 1);
@@ -101,7 +101,7 @@ char	*ft_strdup(char *src)
 
 	i = 0;
 	len = ft_strlen(src);
-	dst = (char *)malloc(sizeof(char) * len + 1);
+	dst = (char *)ft_calloc(sizeof(char), len + 1);
 	if (dst == NULL)
 		return (NULL);
 	while (i < len)

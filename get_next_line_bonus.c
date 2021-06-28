@@ -6,7 +6,7 @@
 /*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 17:28:13 by dalves-s          #+#    #+#             */
-/*   Updated: 2021/06/28 15:08:35 by dalves-s         ###   ########.fr       */
+/*   Updated: 2021/06/28 16:47:51 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,25 @@ int	line_break(char *line_buf, size_t len)
 		i++;
 	}
 	return (0);
+}
+
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	void	*point;
+	char	*set;
+	size_t	i;
+
+	i = 0;
+	point = malloc(nmemb * size);
+	if (!point)
+		return (NULL);
+	set = (char *)point;
+	while (i < size)
+	{
+		set[i] = 0;
+		i++;
+	}
+	return (point);
 }
 
 char	*new_line(char **line, char **line_buf, int *bytes)
@@ -77,7 +96,7 @@ char	split_line(int fd, char **line_buf, char **buf, int *bytes)
 
 int	get_next_line(int fd, char **line)
 {
-	static char	*line_buf[RLIMIT_NOFILE];
+	static char	*line_buf;
 	char		*buf;
 	int			bytes;
 	int			check;
@@ -85,15 +104,15 @@ int	get_next_line(int fd, char **line)
 	bytes = BUFFER_SIZE;
 	if ((fd < 0) || !line || (BUFFER_SIZE <= 0) || fd > RLIMIT_NOFILE)
 		return (-1);
-	if (!line_buf[fd])
-		line_buf[fd] = ft_strdup("");
-	buf = malloc(sizeof(char) * BUFFER_SIZE + 1);
+	if (!line_buf)
+		line_buf = ft_strdup("");
+	buf = ft_calloc(sizeof(char), (BUFFER_SIZE + 1));
 	if (!buf)
 		return (-1);
-	check = split_line(fd, &line_buf[fd], &buf, &bytes);
+	check = split_line(fd, &line_buf, &buf, &bytes);
 	if (!check)
 		return (-1);
-	line_buf[fd] = new_line(line, &line_buf[fd], &bytes);
+	line_buf = new_line(line, &line_buf, &bytes);
 	if (!bytes)
 		return (0);
 	return (1);

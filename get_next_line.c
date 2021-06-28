@@ -6,7 +6,7 @@
 /*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 17:28:13 by dalves-s          #+#    #+#             */
-/*   Updated: 2021/06/28 15:55:08 by dalves-s         ###   ########.fr       */
+/*   Updated: 2021/06/28 16:46:40 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,25 @@ int	line_break(char *line_buf, size_t len)
 		i++;
 	}
 	return (0);
+}
+
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	void	*point;
+	char	*set;
+	size_t	i;
+
+	i = 0;
+	point = malloc(nmemb * size);
+	if (!point)
+		return (NULL);
+	set = (char *)point;
+	while (i < size)
+	{
+		set[i] = 0;
+		i++;
+	}
+	return (point);
 }
 
 char	*new_line(char **line, char **line_buf, int *bytes)
@@ -87,7 +106,7 @@ int	get_next_line(int fd, char **line)
 		return (-1);
 	if (!line_buf)
 		line_buf = ft_strdup("");
-	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	buf = ft_calloc(sizeof(char), (BUFFER_SIZE + 1));
 	if (!buf)
 		return (-1);
 	check = split_line(fd, &line_buf, &buf, &bytes);
