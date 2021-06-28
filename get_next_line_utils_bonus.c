@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 17:28:13 by dalves-s          #+#    #+#             */
-/*   Updated: 2021/06/26 01:02:28 by dalves-s         ###   ########.fr       */
+/*   Updated: 2021/06/28 15:02:08 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 size_t	ft_strlen(char *s)
 {
@@ -30,7 +30,7 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	i = 0;
 	j = 0;
-	joined = (char *) malloc((ft_strlen(s1) + ft_strlen(s2)) + 1);
+	joined = (char *)malloc((ft_strlen(s1) + ft_strlen(s2)) + 1);
 	if (joined == NULL)
 		return (NULL);
 	while (s1[i] != '\0')
@@ -101,7 +101,7 @@ char	*ft_strdup(char *src)
 
 	i = 0;
 	len = ft_strlen(src);
-	dst = (char *) malloc((sizeof(char) * len) + 1);
+	dst = (char *)malloc(sizeof(char) * len + 1);
 	if (dst == NULL)
 		return (NULL);
 	while (i < len)

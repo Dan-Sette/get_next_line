@@ -6,7 +6,7 @@
 /*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 17:28:13 by dalves-s          #+#    #+#             */
-/*   Updated: 2021/06/28 13:36:24 by dalves-s         ###   ########.fr       */
+/*   Updated: 2021/06/28 15:08:26 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*new_line(char **line, char **line_buf, int *bytes)
 		if ((*line_buf)[i] == '\n')
 			i++;
 		len = ft_strlen((char *)((*line_buf) + i));
-		aux = ft_substr((*line_buf), i , len);
+		aux = ft_substr((*line_buf), i, len);
 		if (!aux)
 			return (NULL);
 	}
@@ -56,7 +56,7 @@ char	*new_line(char **line, char **line_buf, int *bytes)
 
 char	split_line(int fd, char **line_buf, char **buf, int *bytes)
 {
-	char *temp;
+	char	*temp;
 
 	while (*bytes && !(line_break(*line_buf, ft_strlen(*line_buf))))
 	{
