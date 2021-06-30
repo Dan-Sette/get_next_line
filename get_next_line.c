@@ -6,7 +6,7 @@
 /*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 17:28:13 by dalves-s          #+#    #+#             */
-/*   Updated: 2021/06/29 21:55:14 by dalves-s         ###   ########.fr       */
+/*   Updated: 2021/06/30 20:12:02 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,20 +75,16 @@ char	*new_line(char **line, char *line_buf, int bytes)
 
 char	split_line(int fd, char **line_buf, char **buf, int *bytes)
 {
-	char	*temp;
-
 	while (*bytes && !(line_break(*line_buf, ft_strlen(*line_buf))))
 	{
 		*bytes = read(fd, *buf, BUFFER_SIZE);
 		(*buf)[*bytes] = 0;
 		if (*bytes < 0 || *bytes > BUFFER_SIZE)
 		{
-			free(buf);
+			free(*buf);
 			return (0);
-		}		
-		temp = *line_buf;
-		*line_buf = ft_strjoin(temp, *buf);
-		free(temp);
+		}
+		*line_buf = ft_strjoin(*line_buf, *buf);
 	}
 	free(*buf);
 	return (1);

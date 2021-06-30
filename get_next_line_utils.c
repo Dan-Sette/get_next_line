@@ -6,7 +6,7 @@
 /*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 17:28:13 by dalves-s          #+#    #+#             */
-/*   Updated: 2021/06/28 16:55:26 by dalves-s         ###   ########.fr       */
+/*   Updated: 2021/06/30 19:48:05 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ char	*ft_strjoin(char *s1, char *s2)
 		j++;
 		i++;
 	}
+	free(s1);
 	joined[i] = '\0';
 	return (joined);
 }
