@@ -6,7 +6,7 @@
 /*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 17:28:13 by dalves-s          #+#    #+#             */
-/*   Updated: 2021/06/30 17:52:19 by dalves-s         ###   ########.fr       */
+/*   Updated: 2021/06/30 20:59:09 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	return (point);
 }
 
-char	*new_line(char **line, char **line_buf, int *bytes)
+char	*new_line(char **line, char *line_buf, int bytes)
 {
 	int		i;
 	char	*aux;
@@ -55,19 +55,20 @@ char	*new_line(char **line, char **line_buf, int *bytes)
 
 	len = 0;
 	i = 0;
-	while ((*line_buf)[i] != '\n' && (*line_buf)[i] != '\0')
+	aux = NULL;
+	while ((line_buf)[i] != '\n' && (line_buf)[i] != '\0')
 		i++;
-	*line = ft_substr((*line_buf), 0, i);
-	if (*bytes)
+	*line = ft_substr((line_buf), 0, i);
+	if (bytes)
 	{
-		if ((*line_buf)[i] == '\n')
+		if ((line_buf)[i] == '\n')
 			i++;
-		len = ft_strlen((char *)((*line_buf) + i));
-		aux = ft_substr((*line_buf), i, len);
+		len = ft_strlen((char *)((line_buf) + i));
+		aux = ft_substr((line_buf), i, len);
 		if (!aux)
 			return (NULL);
 	}
-	free((*line_buf));
+	free((line_buf));
 	if (!*line)
 		return (NULL);
 	return (aux);
@@ -83,9 +84,9 @@ char	split_line(int fd, char **line_buf, char **buf, int *bytes)
 		(*buf)[*bytes] = 0;
 		if (*bytes < 0 || *bytes > BUFFER_SIZE)
 		{
-			free(buf);
+			free(*buf);
 			return (0);
-		}		
+		}
 		temp = *line_buf;
 		*line_buf = ft_strjoin(temp, *buf);
 		free(temp);
@@ -112,7 +113,7 @@ int	get_next_line(int fd, char **line)
 	check = split_line(fd, &line_buf[fd], &buf, &bytes);
 	if (!check)
 		return (-1);
-	line_buf[fd] = new_line(line, &line_buf[fd], &bytes);
+	line_buf[fd] = new_line(line, line_buf[fd], bytes);
 	if (!bytes)
 		return (0);
 	return (1);

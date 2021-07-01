@@ -6,7 +6,7 @@
 /*   By: dalves-s <dalves-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 17:29:00 by dalves-s          #+#    #+#             */
-/*   Updated: 2021/06/30 20:25:48 by dalves-s         ###   ########.fr       */
+/*   Updated: 2021/06/30 20:57:10 by dalves-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,6 @@
 # include <sys/types.h>
 # include <fcntl.h>
 # include <sys/stat.h>
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
-# endif
 
 size_t	ft_strlen(char *s);
 void	*ft_calloc(size_t nmemb, size_t size);
